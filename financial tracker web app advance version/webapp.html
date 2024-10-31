@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow Pro - Advanced Financial Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>FinanceFlow Pro</span>
+            </div>
+            <ul class="nav-links" role="navigation" aria-label="Main Navigation">
+                <li class="active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></li>
+                <li data-tab="transactions"><i class="fas fa-exchange-alt"></i><span>Transactions</span></li>
+                <li data-tab="budget"><i class="fas fa-wallet"></i><span>Budget</span></li>
+                <li data-tab="investments"><i class="fas fa-chart-bar"></i><span>Investments</span></li>
+                <li data-tab="goals"><i class="fas fa-bullseye"></i><span>Goals</span></li>
+                <li data-tab="reports"><i class="fas fa-file-alt"></i><span>Reports</span></li>
+                <li data-tab="settings"><i class="fas fa-cog"></i><span>Settings</span></li>
+            </ul>
+            <div class="theme-toggle">
+                <i class="fas fa-sun"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fas fa-moon"></i>
+            </div>
+        </nav>
+        <main class="content">
+            <header>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-bar" role="search">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="user-info">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Avatar">
+                    <span id="user-name">John Doe</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </header>
+            <div id="dashboard" class="tab-content active">
+                <h2>Financial Dashboard</h2>
+                <div class="dashboard-grid">
+                    <div class="card" id="total-balance">
+                        <h3>Total Balance</h3>
+                        <p>$25,500.00</p>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>3.5%</span>
+                        </div>
+                    </div>
+                    <div class="card" id="income">
+                        <h3>Income</h3>
+                        <p>$8,750.00</p>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>2.1%</span>
+                        </div>
+                    </div>
+                    <div class="card" id="expenses">
+                        <h3>Expenses</h3>
+                        <p>$3,250.00</p>
+                        <div class="trend negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>1.8%</span>
+                        </div>
+                    </div>
+                    <div class="card" id="savings">
+                        <h3>Savings</h3>
+                        <p>$5,500.00</p>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>4.2%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="finance-chart"></canvas>
+                </div>
+                <h3>Recent Transactions</h3>
+                <table id="recent-transactions">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="transactions" class="tab-content">
+                <h2>Transactions</h2>
+                <form id="transaction-form">
+                    <input type="date" id="transaction-date" required>
+                    <input type="text" id="transaction-description" placeholder="Description" required>
+                    <select id="transaction-category" required>
+                        <option value="">Select Category</option>
+                    </select>
+                    <input type="number" id="transaction-amount" placeholder="Amount" required>
+                    <button type="submit">Add Transaction</button>
+                </form>
+                <table id="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="budget" class="tab-content">
+                <h2>Budget</h2>
+                <form id="budget-form">
+                    <select id="budget-category" required>
+                        <option value="">Select Category</option>
+                    </select>
+                    <input type="number" id="budget-limit" placeholder="Budget Limit" required>
+                    <button type="submit">Set Budget</button>
+                </form>
+                <div id="budget-chart-container" class="chart-container">
+                    <canvas id="budget-chart"></canvas>
+                </div>
+                <table id="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Budget Limit</th>
+                            <th>Spent</th>
+                            <th>Remaining</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="investments" class="tab-content">
+                <h2>Investments</h2>
+                <form id="investment-form">
+                    <input type="text" id="investment-name" placeholder="Investment Name" required>
+                    <input type="number" id="investment-value" placeholder="Current Value" required>
+                    <input type="number" id="investment-growth" placeholder="Growth Rate (%)" required>
+                    <button type="submit">Add Investment</button>
+                </form>
+                <div id="investment-chart-container" class="chart-container">
+                    <canvas id="investment-chart"></canvas>
+                </div>
+                <table id="investments-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Current Value</th>
+                            <th>Growth Rate</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="goals" class="tab-content">
+                <h2>Financial Goals</h2>
+                <form id="goal-form">
+                    <input type="text" id="goal-name" placeholder="Goal Name" required>
+                    <input type="number" id="goal-target" placeholder="Target Amount" required>
+                    <input type="number" id="goal-current" placeholder="Current Amount" required>
+                    <button type="submit">Add Goal</button>
+                </form>
+                <div id="goals-container"></div>
+            </div>
+            <div id="reports" class="tab-content">
+                <h2>Financial Reports</h2>
+                <div class="report-options">
+                    <select id="report-type">
+                        <option value="income-expense">Income vs Expenses</option>
+                        <option value="category-breakdown">Category Breakdown</option>
+                        <option value="net-worth">Net Worth</option>
+                    </select>
+                    <input type="date" id="report-start-date">
+                    <input type="date" id="report-end-date">
+                    <button id="generate-report">Generate Report</button>
+                </div>
+                <div id="report-container" class="chart-container"></div>
+                <button id="download-report">Download Report</button>
+            </div>
+            <div id="settings" class="tab-content">
+                <h2>Settings</h2>
+                <form id="user-settings-form">
+                    <input type="text" id="user-name-input" placeholder="Your Name" required>
+                    <input type="email" id="user-email-input" placeholder="Your Email" required>
+                    <select id="currency-preference">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="JPY">JPY</option>
+                    </select>
+                    <button type="submit">Save Settings</button>
+                </form>
+                <div class="data-management">
+                    <h3>Data Management</h3>
+                    <button id="export-data">Export Data</button>
+                    <button id="import-data">Import Data</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="notification" class="notification"></div>
+    <script src="app.js"></script>
+</body>
+</html>
